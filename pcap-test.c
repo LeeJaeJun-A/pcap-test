@@ -186,9 +186,9 @@ int main(int argc, char* argv[]) {
         printf("Source Port:%04x Destination Port: %04x ", ntohs(tcp_hdr->th_sport), ntohs(tcp_hdr->th_dport));
         printf("\n");
 
-        const u_char *tcp_header = (const u_char *)tcp_hdr + 12;
+        const u_char *tcp_header = (const u_char *)tcp_hdr + 12; // offset 활용가능능
         u_int8_t tcp_header_length = ((*tcp_header >> 4) & 0x0F) * 4; // Option이 없을 때, IP헤더의 길이는 20bytes인데 4bit로 표현못하니까 나누기 4한 값을 저장하고 있음
-
+	// *tcp_header >> 2;
         u_int16_t data_size = ntohs(ip_hdr->ip_len) - ip_header_length - tcp_header_length;
 
         if(data_size != 0){
