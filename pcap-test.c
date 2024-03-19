@@ -194,7 +194,7 @@ int main(int argc, char* argv[]) {
         if(data_size != 0){
             printf("Data: ");
             u_char *data = (u_char *)(packet + sizeof(struct libnet_ethernet_hdr) + ip_header_length + tcp_header_length);
-            for(int i = 0; i < (data_size > 10 ? 10 : 0); ++i){
+            for(int i = 0; i < (data_size > 10 ? 10 : data_size); ++i){
                 printf("%02x ",data[i]);
             }
         }
